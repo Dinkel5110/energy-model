@@ -1,26 +1,49 @@
 package org.codefx.demo.bingen.energy_model.math
 
-val decimalToRomanMapping : Map<Int, String> = mapOf(   //declaration of the values (1, 2) of the destructured pair in map
-
-        Pair(50, "L"),      // Mapping of the values needed to compile the Roman numerals (
-        Pair(40, "XL"),
-        Pair(10, "X"),
-        Pair(9, "IX"),
-        Pair(5, "V"),
-        Pair(4, "IV"),
-        Pair(1, "I")        // Here the order from greatest number to smallest is important or
-                            // it would have to be changed while (...)
-)
-fun asRoman(n: Int): String {          // function
-    var decimalRemainder = n           // declaration of the variable decimalRemainder
-    var romanOutput = ""               // declaration of the variable romanOutput -> empty
-
-    decimalToRomanMapping.forEach {        // for each in the map
-        val (decimal, roman) = it          //  multiple values
-        while(decimalRemainder >= decimal) {   // detects the next smaller or the same decimal number from the map
-              romanOutput += roman             // adds the corresponding roman number to the empty output
-              decimalRemainder -= decimal      // subtracts the current decimal number from the source value
-        }                                      // repeat the loop with the rest of the number
+fun asRoman(n: Int): String {                               // function --> declaration
+    var decimalRemainder = n                                // variable declaration
+    var romanOutput = ""
+    while (decimalRemainder >= 1) {                         // loop for the construction of Roman numerals
+        var Loop = ""
+        if (decimalRemainder >= 51 ) {                      // system limits for numbers up to 50
+            return "invalid value for roman numerals"
+        } else {
+            if (decimalRemainder == 50 && Loop == "") {     // If-conditions for each relevant number
+                romanOutput += "L"
+                decimalRemainder -= 50
+                Loop += "1"
+            }
+            if (decimalRemainder >= 40 && Loop == "") {
+                romanOutput += "XL"
+                decimalRemainder -= 40
+                Loop += "1"
+            }
+            if (decimalRemainder >= 10 && Loop == "") {
+                romanOutput += "X"
+                decimalRemainder -= 10
+                Loop += "1"
+            }
+            if (decimalRemainder >= 9 && Loop == "") {
+                romanOutput += "IX"
+                decimalRemainder -= 9
+                Loop += "1"
+            }
+            if (decimalRemainder >= 5 && Loop == "") {
+                romanOutput += "V"
+                decimalRemainder -= 5
+                Loop += "1"
+            }
+            if (decimalRemainder >= 4 && Loop == "") {
+                romanOutput += "IV"
+                decimalRemainder -= 4
+                Loop += "1"
+            }
+            if (decimalRemainder >= 1 && Loop == "") {
+                romanOutput += "I"
+                decimalRemainder -= 1
+                Loop += "1"
+            }
+        }
     }
-    return romanOutput                         // output --> return of the calculated Roman number
+    return romanOutput                                      // output --> return of the calculated Roman number
 }
