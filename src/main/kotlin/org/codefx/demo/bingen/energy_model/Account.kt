@@ -13,7 +13,6 @@ class Account(var balance: Int, var limit: Int) {
             return 0
         }
     }
-
     fun withdraw(amount: Int): Int {
         if (limit <= balance - amount && amount > 0) {
             // balance suffices, pay out the money
@@ -25,9 +24,7 @@ class Account(var balance: Int, var limit: Int) {
             return 0
         }
     }
-
     fun currentBalance(): Int {
         return balance
     }
-
 }
