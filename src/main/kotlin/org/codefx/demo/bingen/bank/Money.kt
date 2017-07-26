@@ -49,7 +49,7 @@ data class Balance(val centAmount: Int, val currency: Currency = Currency.EURO):
     }
 
     override fun toString(): String {
-        return "$centAmount ${currency}Ct)"
+        return "$centAmount $currency)"
     }
 
     override fun compareTo(other: Balance): Int {

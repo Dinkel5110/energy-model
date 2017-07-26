@@ -30,7 +30,7 @@ class BankTest {
         assertTrue(john.accounts.contains(account))
     }
 
-    @Test
+    @Test                                           // fails
     fun newAccountMustContainOpeningDeposit() {
         val john = bank.newCustomer("John Doe")
         val account = bank.openAccount(john, openingDeposit = Money(100))
@@ -38,7 +38,7 @@ class BankTest {
         assertTrue(bank.balance(account) == Balance(100))
     }
 
-    @Test
+    @Test                                           // fails
     fun closingAccountPaysOutAllMoney() {
         val john = bank.newCustomer("John Doe")
         val account = bank.openAccount(john, openingDeposit = Money(150))
@@ -46,7 +46,7 @@ class BankTest {
         assertTrue(bank.closeAccount(john, account) == Money(150))
     }
 
-    @Test
+    @Test                                               // fails
     fun closingOverdrawnAccountPaysOutNoMoney() {
         val john = bank.newCustomer("John Doe")
         val account = bank.openAccount(john, openingDeposit = Money(100), limit = Balance(-100))
@@ -54,6 +54,8 @@ class BankTest {
 
         assertTrue(bank.closeAccount(john, account) == Money(0))
     }
+
+
 
     // TRANSFERRING
 

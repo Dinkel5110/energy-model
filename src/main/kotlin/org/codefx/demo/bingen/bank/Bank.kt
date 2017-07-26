@@ -32,8 +32,13 @@ class Bank {
         if (!customers.contains(customer)) {
             println("!! CUSTOMER DOES NOT BELONG TO THIS BANK")
         }
-
         val newAccount = Account()
+
+        deposit(newAccount,openingDeposit)   // add for BankTest.kt --> Test 3,4 & 5
+
+
+
+
         customer.accounts.add(newAccount)
         return newAccount
     }
@@ -73,8 +78,9 @@ class Bank {
         return account.deposit(amount)
     }
 
-    fun withdraw(account: Account, amount: Money): Money {
-        return account.deposit(amount)
+    fun withdraw(account: Account,amount: Money): Money {
+        account.withdraw(amount)                              // add for BankTest.kt Test 5
+        return account.withdrawRemaining()                    // change return account.deposit(amount) for BankTest.kt Test5
     }
 
     fun transferBetweenAccounts(from: Account, to: Account, amount: Money): Money {
